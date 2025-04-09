@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :providers
+    resources :provider_plans
+    resources :client_plans
   end
   
   

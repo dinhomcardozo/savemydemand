@@ -1,0 +1,35 @@
+<h1>Planos de Prestadores</h1>
+
+<%= link_to 'Novo Plano', new_admin_provider_plan_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Preço</th>
+      <th>Duração (meses)</th>
+      <th>Data de Pagamento</th>
+      <th>Data de Início</th>
+      <th>Data de Término</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @provider_plans.each do |plan| %>
+      <tr>
+        <td><%= plan.description %></td>
+        <td><%= number_to_currency(plan.price, unit: "R$ ", precision: 2) %></td>
+        <td><%= plan.duration_in_months %> meses</td>
+        <td><%= plan.payment_date %></td>
+        <td><%= plan.start_date %></td>
+        <td><%= plan.end_date %></td>
+        <td><%= plan.status ? 'Ativo' : 'Inativo' %></td>
+        <td>
+          <%= link_to 'Editar', edit_admin_provider_plan_path(plan), class: 'btn btn-sm btn-warning' %>
+          <%= link_to 'Excluir', admin_provider_plan_path(plan), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-sm btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

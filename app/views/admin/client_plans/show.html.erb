@@ -1,0 +1,12 @@
+<h1>Detalhes do Plano de Cliente</h1>
+
+    <p><strong>Descrição:</strong> <%= @client_plan.description %></p>
+    <p><strong>Preço:</strong> <%= number_to_currency(@client_plan.price, unit: "R$ ", precision: 2) %></p>
+    <p><strong>Duração:</strong> <%= @client_plan.duration_in_months %> meses</p>
+    <p><strong>Data de Pagamento:</strong> <%= @client_plan.payment_date %></p>
+    <p><strong>Data de Início:</strong> <%= @client_plan.start_date %></p>
+    <p><strong>Data de Término:</strong> <%= @client_plan.end_date %></p>
+    <p><strong>Status:</strong> <%= @client_plan.status ? 'Ativo' : 'Inativo' %></p>
+    
+    <%= link_to 'Editar', edit_admin_client_plan_path(@client_plan), class: 'btn btn-warning' %>
+    <%= link_to 'Voltar', admin_client_plans_path, class: 'btn btn-secondary' %>

@@ -1,0 +1,12 @@
+<h1>Detalhes do Plano de Prestador</h1>
+
+    <p><strong>Descrição:</strong> <%= @provider_plan.description %></p>
+    <p><strong>Preço:</strong> <%= number_to_currency(@provider_plan.price, unit: "R$ ", precision: 2) %></p>
+    <p><strong>Duração:</strong> <%= @provider_plan.duration_in_months %> meses</p>
+    <p><strong>Data de Pagamento:</strong> <%= @provider_plan.payment_date %></p>
+    <p><strong>Data de Início:</strong> <%= @provider_plan.start_date %></p>
+    <p><strong>Data de Término:</strong> <%= @provider_plan.end_date %></p>
+    <p><strong>Status:</strong> <%= @provider_plan.status ? 'Ativo' : 'Inativo' %></p>
+    
+    <%= link_to 'Editar', edit_admin_provider_plan_path(@provider_plan), class: 'btn btn-warning' %>
+    <%= link_to 'Voltar', admin_provider_plans_path, class: 'btn btn-secondary' %>
