@@ -9,4 +9,8 @@
     <p><strong>Status:</strong> <%= @provider_plan.status ? 'Ativo' : 'Inativo' %></p>
     
     <%= link_to 'Editar', edit_admin_provider_plan_path(@provider_plan), class: 'btn btn-warning' %>
-    <%= link_to 'Voltar', admin_provider_plans_path, class: 'btn btn-secondary' %>
+    <%= link_to 'Voltar aos Planos do Prestador', admin_provider_plans_path, class: 'btn btn-secondary' %>
+    
+    <div>
+        <%= link_to 'Voltar ao Painel Admin', admin_root_path, class: 'btn btn-secondary' %>
+    </div>

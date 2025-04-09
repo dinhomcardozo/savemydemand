@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :providers
     resources :provider_plans
     resources :client_plans
+
+    root "home#index" # Página inicial do namespace admin
   end
   
   
