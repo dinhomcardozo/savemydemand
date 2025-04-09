@@ -1,0 +1,14 @@
+<h1>Detalhes do Prestador de Serviço</h1>
+
+    <p><strong>Nome:</strong> <%= @provider.first_name %> <%= @provider.last_name %></p>
+    <p><strong>CNPJ:</strong> <%= @provider.cnpj %></p>
+    <p><strong>CPF:</strong> <%= @provider.cpf %></p>
+    <p><strong>Email:</strong> <%= @provider.email %></p>
+    <p><strong>Telefone:</strong> <%= @provider.phone %></p>
+    <p><strong>Voz:</strong> <%= @provider.voiceover ? 'Sim' : 'Não' %></p>
+    <p><strong>Atuação:</strong> <%= @provider.acting ? 'Sim' : 'Não' %></p>
+    <p><strong>Edição:</strong> <%= @provider.editing ? 'Sim' : 'Não' %></p>
+    <p><strong>Gravação:</strong> <%= @provider.recording ? 'Sim' : 'Não' %></p>
+    
+    <%= link_to 'Editar', edit_admin_provider_path(@provider), class: 'btn btn-warning' %>
+    <%= link_to 'Voltar', admin_providers_path, class: 'btn btn-secondary' %>
