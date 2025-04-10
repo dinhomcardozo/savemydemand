@@ -1,0 +1,26 @@
+git init
+
+git add .
+
+git commit -m "Descreva o commit"
+
+https://github.com/dinhomcardozo/savemydemand.git
+
+
+- mandar projeto para o Github pela 1ª vez
+
+git init
+
+git status
+
+git add .
+
+git status
+
+git commit -m "Commit Home Index Painel Admin"
+
+git branch -M main
+
+git remote add origin https://github.com/dinhomcardozo/savemydemand.git
+
+git push -u origin main
