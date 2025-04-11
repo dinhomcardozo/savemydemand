@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+
+<p>Bem-vindo ao seu painel de controle, <%= current_client.email %>.</p>
+
+<h2>Seus Tickets</h2>
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li><%= ticket.title %> - <%= ticket.status.humanize %></li>
+  <% end %>
+</ul>

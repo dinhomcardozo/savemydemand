@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  provider: one
+  title: MyString
+  description: MyText
+  text: MyText
+  service_type: MyString
+  deadline: 2025-04-11
+  status: MyString
+
+two:
+  client: two
+  provider: two
+  title: MyString
+  description: MyText
+  text: MyText
+  service_type: MyString
+  deadline: 2025-04-11
+  status: MyString

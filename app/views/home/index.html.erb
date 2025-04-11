@@ -1,0 +1,9 @@
+<h1>Bem-vindo à Página Inicial</h1>
+
+<% if client_signed_in? %>
+  <p>Você está logado como cliente.</p>
+  <%= link_to 'Ver seus Tickets', clients_tickets_path, class: 'btn btn-primary' %>
+<% else %>
+  <p>Você não está logado como cliente.</p>
+  <%= link_to 'Entrar como Cliente', new_client_session_path, class: 'btn btn-secondary' %>
+<% end %>

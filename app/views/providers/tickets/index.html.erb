@@ -1,0 +1,22 @@
+<h1>Meus Chamados</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.title %></td>
+        <td><%= ticket.status.humanize %></td>
+        <td>
+          <%= link_to 'Ver', provider_ticket_path(ticket), class: 'btn btn-sm btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

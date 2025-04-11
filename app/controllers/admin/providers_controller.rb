@@ -1,4 +1,5 @@
-class Admin::ProvidersController < ApplicationController
+module Admin
+  class ProvidersController < ApplicationController
     before_action :set_provider, only: [:show, :edit, :update, :destroy]
   
     # GET /admin/providers
@@ -22,9 +23,13 @@ class Admin::ProvidersController < ApplicationController
     # POST /admin/providers
     def create
       @provider = Provider.new(provider_params)
-  
+      @provider.password = SecureRandom.hex(8) # Gera uma senha aleatória de 16 caracteres
+      @provider.password_confirmation = @provider.password
+
       if @provider.save
-        redirect_to admin_providers_path, notice: 'Prestador de serviço cadastrado com sucesso.'
+        # Enviar a senha por email (implementação abaixo)
+        ProviderMailer.with(provider: @provider).welcome_email.deliver_later
+        redirect_to admin_providers_path, notice: 'Prestador criado com sucesso.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -46,14 +51,19 @@ class Admin::ProvidersController < ApplicationController
     end
   
     private
-  
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_provider
       @provider = Provider.find(params[:id])
     end
-  
-    # Only allow a list of trusted parameters through.
+
     def provider_params
-      params.require(:provider).permit(:first_name, :last_name, :cnpj, :cpf, :email, :phone, :voiceover, :acting, :editing, :recording)
+      params.require(:provider).permit(
+        :first_name, :last_name, :email, :cnpj, :cpf, :phone,
+        service_ids: []
+      ).tap do |whitelisted|
+        # Remove valores vazios do array service_ids
+        whitelisted[:service_ids].reject!(&:blank?) if whitelisted[:service_ids]
+      end
     end
   end
+end

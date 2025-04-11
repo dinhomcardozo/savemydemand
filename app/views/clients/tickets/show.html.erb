@@ -1,0 +1,21 @@
+<h1><%= @ticket.title %></h1>
+<p><strong>Status:</strong> <%= @ticket.status.humanize %></p>
+
+<h2>Mensagens</h2>
+<ul>
+  <% @ticket.ticket_messages.each do |message| %>
+    <li>
+      <strong><%= message.sender.email %>:</strong> <%= message.content %>
+      <% if message.attachment.attached? %>
+        <br><%= link_to 'Download', rails_blob_path(message.attachment, disposition: "attachment") %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Enviar Mensagem</h3>
+<%= form_with model: [@ticket, @ticket.ticket_messages.new], url: client_ticket_ticket_messages_path(@ticket) do |form| %>
+  <%= form.text_area :content, rows: 3, class: 'form-control' %>
+  <%= form.file_field :attachment, class: 'form-control mt-2' %>
+  <%= form.submit 'Enviar', class: 'btn btn-primary mt-2' %>
+<% end %>

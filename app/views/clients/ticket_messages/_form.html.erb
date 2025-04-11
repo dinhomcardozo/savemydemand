@@ -1,0 +1,5 @@
+<%= form_with model: [@ticket, @ticket.ticket_messages.new], url: client_ticket_ticket_messages_path(@ticket) do |form| %>
+    <%= form.text_area :content, rows: 3, class: 'form-control' %>
+    <%= form.file_field :attachment, class: 'form-control mt-2' %>
+    <%= form.submit 'Enviar', class: 'btn btn-primary mt-2' %>
+  <% end %>

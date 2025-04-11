@@ -1,0 +1,32 @@
+<h1>Novo Chamado</h1>
+
+<%= form_with model: [@client, @ticket], url: client_tickets_path do |form| %>
+  <div>
+    <%= form.label :title, 'Título' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_area :description, rows: 5, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :service_type, 'Tipo de Serviço' %>
+    <%= form.collection_select :service_type, Ticket.service_types.keys, :to_s, :humanize, { prompt: 'Selecione um tipo de serviço' }, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :provider_id, 'Prestador de Serviço' %>
+    <%= form.collection_select :provider_id, @providers, :id, :email, { prompt: 'Selecione um prestador' }, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :deadline, 'Data Limite' %>
+    <%= form.date_field :deadline, class: 'form-control' %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.submit 'Criar Chamado', class: 'btn btn-primary' %>
+  </div>
+<% end %>

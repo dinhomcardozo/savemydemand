@@ -24,3 +24,16 @@ git branch -M main
 git remote add origin https://github.com/dinhomcardozo/savemydemand.git
 
 git push -u origin main
+
+--------------------
+
+
+http://localhost:3000/clients/sign_in
+
+Client: dinhobear.ness@gmail.com - h4rdc0r3
+
+
+
+http://localhost:3000/clients/sign_in
+
+Provider: Provider Cardozo - provider@gmail.com - h4rdc0r3

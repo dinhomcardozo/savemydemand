@@ -1,26 +1,49 @@
 Rails.application.routes.draw do
-  
-  #Admin
+  # Rotas do Devise
 
+  #Auth Providers
+  devise_for :providers, path: 'providers', controllers: {
+    sessions: 'providers/sessions',
+    registrations: 'providers/registrations'
+  }
+
+  #Auth Clients
+
+  devise_for :clients, path: 'clients', controllers: {
+    sessions: 'clients/sessions',
+    registrations: 'clients/registrations'
+  }
+
+  # Rota raiz
+  root "home#index"
+
+  # Namespace Admin
   namespace :admin do
     resources :providers
+    resources :clients
     resources :provider_plans
     resources :client_plans
 
     root "home#index" # Página inicial do namespace admin
   end
-  
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Namespace Clients
+  namespace :clients do
+    root "dashboard#index" # Página inicial (dashboard) para clientes
+    resources :tickets do
+      resources :tickets, only: [:index, :show, :create]
+    end
+  end
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Namespace Providers
+  namespace :providers do
+    root "dashboard#index" # Página inicial (dashboard) para prestadores
+    resources :tickets, only: [:index, :show, :update] do
+      resources :ticket_messages, only: [:create]
+    end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  end
+
+  # Health check (opcional)
+  # get "up" => "rails/health#show", as: :rails_health_check
 end
