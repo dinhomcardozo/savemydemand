@@ -42,6 +42,12 @@ Rails.application.routes.draw do
       resources :ticket_messages, only: [:create]
     end
 
+  resources :services, only: [] do
+    collection do
+      get ":id/providers", to: "services#providers", as: "service_providers"
+    end
+  end
+
   end
 
   # Health check (opcional)

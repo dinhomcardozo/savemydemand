@@ -3,13 +3,12 @@ class Provider < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  has_many :tickets, dependent: :nullify
-  
+
   # Relações
+  has_many :tickets, dependent: :nullify
   has_and_belongs_to_many :services
 
-  # Campos booleanos para tipos de serviço
+  # Validações
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true

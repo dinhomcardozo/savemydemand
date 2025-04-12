@@ -12,7 +12,7 @@ module Clients
 
     def new
       @ticket = current_client.tickets.new
-      @providers = Provider.all # Lista de prestadores disponíveis
+      @services = Service.all
     end
 
     def create
@@ -20,7 +20,7 @@ module Clients
       if @ticket.save
         redirect_to client_tickets_path, notice: 'Solicitação criada com sucesso.'
       else
-        @providers = Provider.all
+        @services = Service.all
         render :new, status: :unprocessable_entity
       end
     end
@@ -28,7 +28,7 @@ module Clients
     private
 
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :service_type, :provider_id, :deadline)
+      params.require(:ticket).permit(:title, :description, :service_id, :provider_id, :deadline)
     end
   end
 end
